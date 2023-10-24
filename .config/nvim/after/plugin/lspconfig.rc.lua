@@ -22,7 +22,7 @@ end
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 vim.diagnostic.config({
@@ -37,3 +37,8 @@ require("lsp-attaches.lang-servers.tsserver").start(on_attach, capabilities)
 require("lsp-attaches.lang-servers.eslint").start(on_attach, capabilities)
 require("lsp-attaches.lang-servers.sumneko_lua").start(on_attach, capabilities)
 require("lsp-attaches.lang-servers.yamlls").start(on_attach, capabilities)
+require("lsp-attaches.lang-servers.gopls").start(on_attach, capabilities)
+require("lsp-attaches.lang-servers.pyright").start(on_attach, capabilities)
+require("lsp-attaches.lang-servers.html-lsp").start(on_attach, capabilities)
+require("lsp-attaches.lang-servers.emmet-language-server").start(on_attach, capabilities)
+require("lsp-attaches.lang-servers.astro-language-server").start(on_attach, capabilities)

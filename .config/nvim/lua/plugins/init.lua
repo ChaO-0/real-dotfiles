@@ -26,13 +26,18 @@ return require("packer").startup(function(use)
 	})
 
 	-- lsp
-	use("onsails/lspkind-nvim") -- vscode like pictograms
-	use("neovim/nvim-lspconfig") -- LSP
-	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for buffer words
-	use("hrsh7th/cmp-buffer") -- nvim-cmp source for neovim's built in lsp
-	use("hrsh7th/nvim-cmp") -- completion
-	use("L3MON4D3/LuaSnip") --lua snip
-	use("glepnir/lspsaga.nvim")
+	use("onsails/lspkind-nvim")               -- vscode like pictograms
+	use("neovim/nvim-lspconfig")              -- LSP
+	use("hrsh7th/cmp-nvim-lsp")               -- nvim-cmp source for buffer words
+	use("hrsh7th/cmp-buffer")                 -- nvim-cmp source for neovim's built in lsp
+	use("hrsh7th/nvim-cmp")                   -- completion
+	use("hrsh7th/cmp-path")                   -- path completion
+	use("hrsh7th/cmp-nvim-lsp-signature-help") -- function signature helper
+	use("L3MON4D3/LuaSnip")                   --lua snip
+	use({
+		"nvimdev/lspsaga.nvim",
+		after = "nvim-lspconfig",
+	})
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 
@@ -47,15 +52,21 @@ return require("packer").startup(function(use)
 	use("windwp/nvim-autopairs")
 	use("tpope/vim-surround")
 
+	-- autotag
+	use("windwp/nvim-ts-autotag")
+
 	-- telescope / file browser
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
+		tag = "0.1.4",
 		requires = { {
 			"nvim-lua/plenary.nvim",
 		} },
 	})
-	use("nvim-telescope/telescope-file-browser.nvim")
+	use {
+		"nvim-telescope/telescope-file-browser.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+	}
 
 	-- Bufferline
 	use({
@@ -82,8 +93,9 @@ return require("packer").startup(function(use)
 	-- git
 	use("lewis6991/gitsigns.nvim")
 
+	use("jose-elias-alvarez/null-ls.nvim")
 
-
+	use 'voldikss/vim-floaterm'
 	if packer_bootstrap then
 		require("packer").sync()
 	end
