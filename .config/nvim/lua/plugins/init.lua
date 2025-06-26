@@ -1,102 +1,20 @@
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
-		return true
-	end
-	return false
-end
-
-local packer_bootstrap = ensure_packer()
-
-return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
-	use("folke/tokyonight.nvim")
-	use("andweeb/presence.nvim")
-	use("kyazdani42/nvim-web-devicons")
-	use("folke/which-key.nvim")
-	use("nvim-lua/plenary.nvim")
-
-	-- UI
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
-
-	-- lsp
-	use("onsails/lspkind-nvim")               -- vscode like pictograms
-	use("neovim/nvim-lspconfig")              -- LSP
-	use("hrsh7th/cmp-nvim-lsp")               -- nvim-cmp source for buffer words
-	use("hrsh7th/cmp-buffer")                 -- nvim-cmp source for neovim's built in lsp
-	use("hrsh7th/nvim-cmp")                   -- completion
-	use("hrsh7th/cmp-path")                   -- path completion
-	use("hrsh7th/cmp-nvim-lsp-signature-help") -- function signature helper
-	use("L3MON4D3/LuaSnip")                   --lua snip
-	use({
-		"nvimdev/lspsaga.nvim",
-		after = "nvim-lspconfig",
-	})
-	use("williamboman/mason.nvim")
-	use("williamboman/mason-lspconfig.nvim")
-
-	-- syntax highlighting
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
-	use("nvim-treesitter/nvim-treesitter-context")
-
-	-- autopair
-	use("windwp/nvim-autopairs")
-	use("tpope/vim-surround")
-
-	-- autotag
-	use("windwp/nvim-ts-autotag")
-
-	-- telescope / file browser
-	use({
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.4",
-		requires = { {
-			"nvim-lua/plenary.nvim",
-		} },
-	})
-	use {
-		"nvim-telescope/telescope-file-browser.nvim",
-		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-	}
-
-	-- Bufferline
-	use({
-		"akinsho/bufferline.nvim",
-		tag = "v3.*",
-		requires = "kyazdani42/nvim-web-devicons",
-	})
-
-	-- File Explorer
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = {
-			"kyazdani142/nvim-web-devicons",
-		},
-		tag = "nightly",
-	})
-
-	-- for easier code reading
-	use("lukas-reineke/indent-blankline.nvim")
-
-	-- commentor
-	use("terrortylor/nvim-comment")
-
-	-- git
-	use("lewis6991/gitsigns.nvim")
-
-	use("jose-elias-alvarez/null-ls.nvim")
-
-	use 'voldikss/vim-floaterm'
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end)
+return {
+    {
+        "folke/tokyonight.nvim",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+        opts = {},
+        config = function ()
+            vim.cmd([[colorscheme tokyonight-night]])
+        end
+    },
+    { "andweeb/presence.nvim" },
+    { "kyazdani42/nvim-web-devicons" },
+    {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp"
+    },
+}

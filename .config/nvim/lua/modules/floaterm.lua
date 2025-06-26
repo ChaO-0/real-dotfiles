@@ -9,8 +9,8 @@ keymap("t", "∂", '<CMD>:FloatermToggle<CR>', opt)
 
 keymap('n', '<Leader>t', '<CMD>:FloatermNew<CR>', opt)
 
-keymap('n', '<C-n>', '<CMD>:FloatermNext<CR>', opt)
-keymap('t', '<C-n>', '<CMD>:FloatermNext<CR>', opt)
-
-keymap('n', '<C-p>', '<CMD>:FloatermPrev<CR>', opt)
-keymap('t', '<C-p>', '<CMD>:FloatermPrev<CR>', opt)
+keymap('n', '<C-.>', '<CMD>:FloatermNext<CR>', opt)
+keymap('t', '<C-.>', '<CMD>:FloatermNext<CR>', opt)
+--
+keymap('n', '<C-,>', '<CMD>:FloatermPrev<CR>', opt)
+keymap('t', '<C-,>', '<CMD>:FloatermPrev<CR>', opt)

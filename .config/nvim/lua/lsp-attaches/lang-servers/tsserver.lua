@@ -8,7 +8,10 @@ local M = {}
 M.start = function(on_attach, capabilities)
 	lspconfig.tsserver.setup({
 		on_attach = on_attach,
-		filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+		filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+		init_options = {
+			hostInfo = "neovim"
+		},
 		cmd = { "typescript-language-server", "--stdio" },
 		capabilities = capabilities,
 	})

@@ -1,9 +1,33 @@
--- vim.g.loaded = 1
--- vim.g.loaded_netrwPlugin = 1
+-- require("base")
+-- require("plugins")
+-- require("maps")
+-- require("tokyonight").setup()
 
-require("base")
-require("plugins")
-require("maps")
-require("tokyonight").colorscheme({
-	style = "night",
-})
+-- require("modules.nvim-tree")
+-- require('modules.mason')
+-- require('modules.lspconfig')
+-- require('modules.treesitter')
+-- require('modules.treesitter-context')
+-- require('modules.bufferline')
+-- require('modules.autopairs')
+-- require('modules.autotag')
+-- require('modules.cmp')
+-- require('modules.alpha')
+-- require('modules.lualine')
+-- require('modules.lspsaga')
+-- require('modules.telescope')
+-- require('modules.null-ls')
+-- require('modules.floaterm')
+-- require('modules.gitsigns')
+-- require('modules.indent-blankline')
+-- require('modules.nvim-comment')
+-- require('modules.which-key')
+-- require('modules.color-picker')
+-- -- require('modules.nvim-colorizer')
+-- require('modules.nvchad-nvim-colorizer')
+
+-- start of your init.lua
+-- vim.g.loaded_netrw       = 1
+-- vim.g.loaded_netrwPlugin = 1
+require("config.options")
+require("config.lazy")
